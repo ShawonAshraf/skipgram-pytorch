@@ -71,7 +71,7 @@ options:
 
 
 # example 
-python src/train.py --n_instances 15000 --window_size 5 --min_freq 5 --batch_size 128 --num_workers 4  --lr 0.003 --epochs 2 --path saved_models/vectors.tar
+python src/train.py --n_instances 15000 --window_size 5 --min_freq 5 --batch_size 128 --num_workers 4  --lr 0.003 --epochs 15 --path saved_models/vectors.tar
 
 ```
 
