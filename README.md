@@ -95,9 +95,10 @@ python src/visualise.py --n 300 --path "saved_models/vectors.tar"
 ```
 
 ### Using Colab
-You can upload the `notebooks/full_notebook.ipynb` file to your Google Drive and then open it using Colab. Also, you can use this direct link:
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ShawonAshraf/skipgram-pytorch/blob/main/notebooks/full_notebook.ipynb)
 
+You can upload the `notebooks/full_notebook.ipynb` file to your Google Drive and then open it using Colab. Also, you can use this direct link just above.
 
 ## Additional Resources
 
