@@ -1,6 +1,4 @@
 import argparse
-import os
-import shutil
 from typing import Any
 
 import numpy as np
@@ -54,6 +52,12 @@ argparser.add_argument("--lr", type=float, required=True, help="initial learning
 argparser.add_argument(
     "--epochs", type=int, required=True, help="number of epochs to train for"
 )
+argparser.add_argument(
+    "--path",
+    type=str,
+    required=True,
+    help="path where the model will be saved post training",
+)
 
 CONFIG = argparser.parse_args()
 
@@ -64,7 +68,7 @@ def train_step(
     model: SkipgramModel, batch: Any, criterion: NegativeSamplingLoss, device: Any
 ) -> torch.Tensor:
     model.train()
-    
+
     target = batch["target"]
     context = batch["context"]
 
@@ -117,24 +121,25 @@ def train_model(
     return model, global_losses
 
 
-def save_model(model: SkipgramModel, overwrite: bool) -> None:
-    if not os.path.exists("../saved_models"):
-        logger.info("Creating directory to save models")
-        os.makedirs("../saved_models", exist_ok=False)
-    else:
-        if overwrite:
-            logger.warning(
-                "Overwrite is True, removing directory and creating a new one"
-            )
-            shutil.rmtree("../saved_models")
-            os.makedirs("../saved_models", exist_ok=False)
-        else:
-            logger.error("Directory already exists, so, exiting")
-            return
-
+def save_model(model: SkipgramModel, save_path: str) -> None:
     state_dict = model.state_dict()
-    torch.save(state_dict, "../saved_models/saved.ckpt")
-    logger.success(f"Saved model at {os.getcwd()}/saved_models/saved.ckpt")
+    vocabulary = model.vocabulary
+    word_to_idx = model.word_to_idx
+    noise_dist = model.noise_distribution
+
+    logger.info("Saving model checkpoint")
+    torch.save(
+        {
+            "model_state_dict": state_dict,
+            "dimensions": model.embedding_dim,
+            "vocabulary": vocabulary,
+            "word_to_idx": word_to_idx,
+            "noise_distribution": noise_dist,
+        },
+        str(save_path),
+    )
+
+    logger.success(f"Saved at {save_path}")
 
 
 if __name__ == "__main__":
@@ -174,4 +179,4 @@ if __name__ == "__main__":
         model, CONFIG.epochs, CONFIG.lr, train_loader, accelerator
     )
 
-    save_model(trained_model, True)
+    save_model(trained_model, CONFIG.path)
