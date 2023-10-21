@@ -94,6 +94,11 @@ python src/visualise.py --n 300 --path "saved_models/vectors.tar"
 
 ```
 
+### Using Colab
+You can upload the `notebooks/full_notebook.ipynb` file to your Google Drive and then open it using Colab. Also, you can use this direct link:
+
+
+
 ## Additional Resources
 
 - [Mikolov, Tomas, Ilya Sutskever, Kai Chen, Greg S Corrado, and Jeff Dean. “Distributed Representations of Words and Phrases and Their Compositionality,” n.d.
