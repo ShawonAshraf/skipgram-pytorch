@@ -1,11 +1,11 @@
 # skipgram-pytorch
 
-A Pytorch implementation of the kkipgram model from [Mikolov et al. 2013](https://proceedings.neurips.cc/paper_files/paper/2013/file/9aa42b31882ec039965f3c4923ce901b-Paper.pdf) on the train split of the [multi_news](https://huggingface.co/datasets/multi_news) dataset.
+A Pytorch implementation of the skipgram model from [Mikolov et al. 2013](https://proceedings.neurips.cc/paper_files/paper/2013/file/9aa42b31882ec039965f3c4923ce901b-Paper.pdf) on the train split of the [multi_news](https://huggingface.co/datasets/multi_news) dataset.
 
 ## Pre-requisites
 
 1. Make sure to have Anaconda / Miniconda installed
-2. WSL or a Linux distro installed on your computer, since the conda env for this project was created in a linux environment (Ubuntu 22.04 to be exact.)
+2. WSL or a Linux distro installed on your computer, since the conda env for this project was created in a Linux environment (Ubuntu 22.04 to be exact.)
 3. If you "don't" plan to use the entirety of the `multi_news` dataset and would rather use a small subset,
 you can train the entire model on a CPU. Otherwise, any GPU with 8GB of VRAM will do fine. (Or, you can use Google Colab.)
 
@@ -18,7 +18,7 @@ gh repo clone ShawonAshraf/skipgram-pytorch
 
 cd skipgram-pytorch
 conda env create -f env.yml
-# wait for the envrionment to setup
+# wait for the environment to setup
 
 # create a directory to save your model checkpoint after training
 mkdir saved_models
